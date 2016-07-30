@@ -32,7 +32,8 @@ public class TwitterSearchController {
     public String helloTwitter(Model model) {
         Twitter twitter = new TwitterTemplate(env.getProperty("SPRING_SOCIAL_TWITTER_API"),
                 env.getProperty("SPRING_SOCIAL_TWITTER_APPSECRET"));
-        return "hello";
+
+        return "searchResults";
     }
 
 }
