@@ -5,5 +5,9 @@
 </head>
 <body>
     <h1>These are your Twitter search results:</h1>
+
+    <ul>
+        <li th:each="searchResult:${searchResults}" th:text="${searchResult.unmodifiedText}">Friend</li>
+    </ul>
 </body>
 </html>
