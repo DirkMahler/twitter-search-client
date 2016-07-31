@@ -11,7 +11,10 @@
 
     <properties>
         <spring-social.version>1.1.0.RELEASE</spring-social.version>
-        <spring-social-twitter.version>1.1.4.RELEASE</spring-social-twitter.version>
+        <spring-social-twitter.version>1.1.0.RELEASE</spring-social-twitter.version>
+        <togglz.version>2.3.0.Final</togglz.version>
+        <thymeleaf-extras-togglz.version>1.0.1.RELEASE</thymeleaf-extras-togglz.version>
+        <junit.version>3.8.1</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
     </properties>
@@ -32,7 +35,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-
         </dependency>
 
         <dependency>
@@ -50,13 +52,44 @@
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
-            <version>${spring-social.version}</version>
+            <version>${spring-social-twitter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-spring-boot-starter</artifactId>
+            <version>${togglz.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-console</artifactId>
+            <version>${togglz.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-spring-security</artifactId>
+            <version>${togglz.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.togglz</groupId>
+            <artifactId>togglz-junit</artifactId>
+            <version>${togglz.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.heneke.thymeleaf</groupId>
+            <artifactId>thymeleaf-extras-togglz</artifactId>
+            <version>${thymeleaf-extras-togglz.version}</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
