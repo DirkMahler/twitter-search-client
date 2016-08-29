@@ -1,8 +1,6 @@
 package net.softwareminds;
 
-import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
-import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
@@ -27,16 +25,14 @@ public class TwitterSearchController {
         return "search";
     }
 
-
-    @RequestMapping(value = "/search", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType
+            .APPLICATION_FORM_URLENCODED_VALUE)
     public String formBookingPost(@RequestParam String searchQuery, Model model) {
         SearchResults results = twitter.searchOperations().search(searchQuery);
 
         List<Tweet> searchResults = results.getTweets();
         model.addAttribute("searchResults", searchResults);
 
-        return "searchResults";
+        return "search";
     }
-
-
 }
