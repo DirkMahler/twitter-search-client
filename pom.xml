@@ -74,16 +74,28 @@
         </dependency>
 
         <dependency>
+            <groupId>com.github.heneke.thymeleaf</groupId>
+            <artifactId>thymeleaf-extras-togglz</artifactId>
+            <version>${thymeleaf-extras-togglz.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7-1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.togglz</groupId>
             <artifactId>togglz-junit</artifactId>
             <version>${togglz.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.heneke.thymeleaf</groupId>
-            <artifactId>thymeleaf-extras-togglz</artifactId>
-            <version>${thymeleaf-extras-togglz.version}</version>
         </dependency>
 
         <dependency>
