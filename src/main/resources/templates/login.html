@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>The Twitter search results:</title>
+
+        <link type="text/css" rel="stylesheet" href="./webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <form th:action="@{/login}" method="post">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <div class="form-group row">
+                    <label for="inputUser" class="col-xs-1">User:</label>
+                    <input type="text" id="inputUser" class="col-xs-3" name="username" placeholder=""/>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-xs-1">Password:</label>
+                    <input type="password" id="inputPassword" class="col-xs-3" name="password" placeholder=""/>
+                </div>
+                <button class="btn btn-primary" type="submit">Sign in</button>
+            </form>
+        </div>
+    </body>
+</html>
