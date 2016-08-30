@@ -6,38 +6,40 @@
         <link type="text/css" rel="stylesheet" href="./webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
     </head>
     <body>
-        <div class="jumbotron">
-            <h1>Twitter Search Client</h1>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Twitter Search Client</h1>
 
-            <form method="GET" action="/">
-                <div>
-                    <label>Please enter search query:</label>
-                    <input id="query" name="searchQuery" type='text' placeholder=""/>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+                <form method="GET" action="/">
+                    <div>
+                        <label>Please enter search query:</label>
+                        <input id="query" name="searchQuery" type='text' placeholder=""/>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <h1>These are your Twitter search results:</h1>
+
+            <ul class="list-group">
+                <li class="list-group-item" th:each="searchResult:${searchResults}">
+                    <div class="row">
+                        <div class="col-xs-1" th:text="${searchResult.fromUser}">
+                        </div>
+                        <div class="col-xs-2" th:text="${searchResult.createdAt}">
+                        </div>
+                        <div class="col-xs-1" th:text="${searchResult.retweetCount}">
+                        </div>
+                        <div class="col-xs-1" th:text="${searchResult.favoriteCount}">
+                        </div>
+                        <div class="col-xs-4" th:text="${searchResult.unmodifiedText}">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <script type="text/javascript" src="./webjars/jquery/3.1.0/jquery.min.js"></script>
+            <script type="text/javascript"
+                    src="./webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
         </div>
-
-        <h1>These are your Twitter search results:</h1>
-
-        <ul class="list-group">
-            <li class="list-group-item" th:each="searchResult:${searchResults}">
-                <div class="row">
-                    <div class="col-xs-1" th:text="${searchResult.fromUser}">
-                    </div>
-                    <div class="col-xs-2" th:text="${searchResult.createdAt}">
-                    </div>
-                    <div class="col-xs-1" th:text="${searchResult.retweetCount}">
-                    </div>
-                    <div class="col-xs-1" th:text="${searchResult.favoriteCount}">
-                    </div>
-                    <div class="col-xs-4" th:text="${searchResult.unmodifiedText}">
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <script type="text/javascript" src="./webjars/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript"
-                src="./webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
     </body>
 </html>
