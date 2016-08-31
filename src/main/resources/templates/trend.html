@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Twitter Search</title>
+        <title>Twitter Trend</title>
 
         <link type="text/css" rel="stylesheet" href="./webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
     </head>
@@ -12,19 +12,24 @@
                     <a class="navbar-brand" href="#">Twitter Client</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/}">Search</a></li>
-                    <li><a th:href="@{/trend}">Trend</a></li>
+                    <li><a th:href="@{/}">Search</a></li>
+                    <li class="active"><a th:href="@{/trend}">Trend</a></li>
                 </ul>
             </div>
         </nav>
         <div class="container">
             <div class="jumbotron">
-                <h1>Twitter Search</h1>
+                <h1>Twitter Trend</h1>
 
-                <form class="form-inline" method="GET" action="/">
+                <form class="form-inline" method="GET" action="/trend">
                     <div class="form-group">
-                        <label>Please enter search query:</label>
-                        <input id="query" class="form-control" name="searchQuery" type='text' placeholder=""/>
+                        <label for="sel1">Please select a city:</label>
+                        <select class="form-control" id="city" name="city">
+                            <option value="frankfurt">Frankfurt</option>
+                            <option value="hamburg">Hamburg</option>
+                            <option value="berlin">Berlin</option>
+                        </select>
+                        <!--<input type="submit"/>-->
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </form>
@@ -35,15 +40,9 @@
             <ul class="list-group">
                 <li class="list-group-item" th:each="searchResult:${searchResults}">
                     <div class="row">
-                        <div class="col-xs-1" th:text="${searchResult.fromUser}">
+                        <div class="col-xs-3" th:text="${searchResult.name}">
                         </div>
-                        <div class="col-xs-2" th:text="${searchResult.createdAt}">
-                        </div>
-                        <div class="col-xs-1" th:text="${searchResult.retweetCount}">
-                        </div>
-                        <div class="col-xs-1" th:text="${searchResult.favoriteCount}">
-                        </div>
-                        <div class="col-xs-4" th:text="${searchResult.unmodifiedText}">
+                        <div class="col-xs-5" th:text="${searchResult.query}">
                         </div>
                     </div>
                 </li>
