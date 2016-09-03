@@ -23,11 +23,21 @@
 
                 <form class="form-inline" method="GET" action="/">
                     <div class="form-group">
-                        <label>Please enter search query:</label>
+                        <label class="">Please enter search query:</label>
                         <input id="query" class="form-control" name="searchQuery" type='text' placeholder=""/>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </form>
+                <div class="form-group">
+                    <label>Recent searches:</label>
+                    <!--<input id="query" class="form-control" name="searchQuery" type='text' placeholder=""/>-->
+                    <!--<button class="btn btn-primary" type="submit">Submit</button>-->
+                    <div class="list-group">
+                        <a th:each="recentSearch:${recentSearches}"
+                           th:href="@{/(searchQuery=${recentSearch})}" class="list-group-item"
+                           th:text="${recentSearch}"></a>
+                    </div>
+                </div>
             </div>
 
             <h1>These are your Twitter search results:</h1>

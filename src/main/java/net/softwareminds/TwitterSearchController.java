@@ -1,5 +1,7 @@
 package net.softwareminds;
 
+import net.softwareminds.repo.RecentSearchesRepo;
+import org.springframework.security.core.Authentication;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Trend;
 import org.springframework.social.twitter.api.Trends;
@@ -20,6 +22,8 @@ public class TwitterSearchController {
 
     @Inject
     private Twitter twitter;
+    @Inject
+    private RecentSearchesRepo recentSearchesRepo;
 
     private WhereOnEarthIDMapper woeIDMap;
 
@@ -28,12 +32,14 @@ public class TwitterSearchController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String search(@RequestParam(required = false) String searchQuery, Model model) {
+    public String search(@RequestParam(required = false) String searchQuery, Model model, Authentication authentication) {
         if (searchQuery != null) {
+            recentSearchesRepo.addRecentSearch(authentication.getName(), searchQuery);
             SearchResults results = twitter.searchOperations().search(searchQuery);
 
             List<Tweet> searchResults = results.getTweets();
             model.addAttribute("searchResults", searchResults);
+            model.addAttribute("recentSearches", recentSearchesRepo.getRecentSearchesByUser(authentication.getName()));
         }
         return "search";
     }
