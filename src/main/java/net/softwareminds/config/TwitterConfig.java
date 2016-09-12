@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.togglz.core.manager.EnumBasedFeatureProvider;
+import org.togglz.core.repository.StateRepository;
+import org.togglz.core.repository.mem.InMemoryStateRepository;
 import org.togglz.core.spi.FeatureProvider;
 import org.togglz.core.user.UserProvider;
 import org.togglz.spring.security.SpringSecurityUserProvider;
@@ -22,4 +24,10 @@ public class TwitterConfig extends SocialConfigurerAdapter {
     public UserProvider getUserProvider() {
         return new SpringSecurityUserProvider("ROLE_ADMIN");
     }
+
+    @Bean
+    public StateRepository getStateRepository() {
+        return new InMemoryStateRepository();
+    }
+
 }
