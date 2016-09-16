@@ -21,7 +21,12 @@ public enum TwitterFeatureToggles implements Feature {
     @Label("Twitter Trends")
     @InfoLink("http://jira-user-story")
     @Owner("Kai")
-    TWITTER_TRENDS;
+    TWITTER_TRENDS,
+
+    @Label("Twitter Profiles")
+    @InfoLink("http://jira-profile-story")
+    @Owner("Kai")
+    TWITTER_PROFILE;
 
     public boolean isActive() {
         return FeatureContext.getFeatureManager().isActive(this);

@@ -20,33 +20,29 @@
         </nav>
         <div class="container">
             <div class="jumbotron">
-                <h1>Twitter Trend</h1>
+                <h1>Twitter Profile</h1>
 
-                <form class="form-inline" method="GET" action="/trend">
+                <form class="form-inline" method="GET" action="/profile">
                     <div class="form-group">
-                        <label for="sel1">Please select a city:</label>
-                        <select class="form-control" id="city" name="city">
-                            <option value="frankfurt">Frankfurt</option>
-                            <option value="hamburg">Hamburg</option>
-                            <option value="berlin">Berlin</option>
-                        </select>
-                        <!--<input type="submit"/>-->
+                        <label class="">Please enter user name:</label>
+                        <input id="query" class="form-control" name="userScreenName" type='text' placeholder=""/>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
 
-            <h1>These are your Twitter search results:</h1>
-
-            <ul class="list-group">
-                <li class="list-group-item" th:each="searchResult:${searchResults}">
+            <ul th:if="${twitterProfile}!=null" class="list-group">
+                <h1>The Twitter Profile of <span th:text="${twitterProfile.screenName}"></span></h1>
                     <div class="row">
-                        <div class="col-xs-3" th:text="${searchResult.name}">
-                        </div>
-                        <div class="col-xs-5" th:text="${searchResult.query}">
-                        </div>
+                        <div class="col-xs-3">Description: <span th:text="${twitterProfile.description}"></span></div>
                     </div>
-                </li>
+                     <div class="row">
+                         <div class="col-xs-3">Location:
+                             <span th:text="${twitterProfile.location}"></span></div>
+                         <div class="col-xs-3">Number of followers:
+                            <span th:text="${twitterProfile.followersCount}"></span></div>
+                    </div>
+                </div>
             </ul>
             <script type="text/javascript" src="./webjars/jquery/3.1.0/jquery.min.js"></script>
             <script type="text/javascript"
