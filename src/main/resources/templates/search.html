@@ -16,6 +16,11 @@
                     <li togglz:active="TWITTER_TRENDS"><a th:href="@{/trend}">Trend</a></li>
                     <li togglz:active="TWITTER_PROFILE"><a th:href="@{/profile}">Profile</a></li>
                 </ul>
+                <div class="nav navbar-nav navbar-right">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="navbar-brand btn-link" type="submit">Logout</button>
+                    </form>
+                </div>
             </div>
         </nav>
         <div class="container">

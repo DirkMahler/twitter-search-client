@@ -16,6 +16,11 @@
                     <li togglz:active="TWITTER_TRENDS"><a th:href="@{/trend}">Trend</a></li>
                     <li togglz:active="TWITTER_PROFILE" class="active"><a th:href="@{/profile}">Profile</a></li>
                 </ul>
+                <div class="nav navbar-nav navbar-right">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="navbar-brand btn-link" type="submit">Logout</button>
+                    </form>
+                </div>
             </div>
         </nav>
         <div class="container">
@@ -42,7 +47,6 @@
                          <div class="col-xs-3">Number of followers:
                             <span th:text="${twitterProfile.followersCount}"></span></div>
                     </div>
-                </div>
             </ul>
             <script type="text/javascript" src="./webjars/jquery/3.1.0/jquery.min.js"></script>
             <script type="text/javascript"
