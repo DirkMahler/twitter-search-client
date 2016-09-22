@@ -2,6 +2,7 @@ package net.softwareminds;
 
 import net.softwareminds.config.TwitterFeatureToggles;
 import net.softwareminds.repo.RecentSearchesRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Trend;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.inject.Inject;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -23,9 +24,10 @@ import java.util.List;
 @RequestMapping("/")
 public class TwitterSearchController {
 
-    @Inject
+    @Autowired
     private Twitter twitter;
-    @Inject
+
+    @Resource(name= "recentSearchesRepo")
     private RecentSearchesRepo recentSearchesRepo;
 
     private WhereOnEarthIDMapper woeIDMap;
@@ -43,8 +45,8 @@ public class TwitterSearchController {
 
             List<Tweet> searchResults = results.getTweets();
             model.addAttribute("searchResults", searchResults);
-            model.addAttribute("recentSearches", recentSearchesRepo.getRecentSearchesByUser(authentication.getName()));
         }
+        model.addAttribute("recentSearches", recentSearchesRepo.getRecentSearchesByUser(authentication.getName()));
         return "search";
     }
 
