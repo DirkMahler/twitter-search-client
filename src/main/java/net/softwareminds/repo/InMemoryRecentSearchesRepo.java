@@ -1,13 +1,11 @@
 package net.softwareminds.repo;
 
 import com.google.common.collect.EvictingQueue;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 public class InMemoryRecentSearchesRepo implements RecentSearchesRepo {
 
     private final int maxSearchesPerUser;

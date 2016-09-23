@@ -27,14 +27,11 @@ public class TwitterSearchController {
     @Autowired
     private Twitter twitter;
 
-    @Resource(name= "recentSearchesRepo")
+    @Autowired
     private RecentSearchesRepo recentSearchesRepo;
 
+    @Autowired
     private WhereOnEarthIDMapper woeIDMap;
-
-    public TwitterSearchController() {
-        woeIDMap = new WhereOnEarthIDMapper();
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String search(@RequestParam(required = false) String searchQuery, Model model,

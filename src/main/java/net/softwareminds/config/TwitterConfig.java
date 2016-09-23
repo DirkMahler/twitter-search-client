@@ -40,12 +40,11 @@ public class TwitterConfig extends SocialConfigurerAdapter {
     }
 
     @Bean
-    public FeatureProxyFactoryBean recentSearchesRepo(InMemoryRecentSearchesRepo inMemoryRecentSearchesRepo,
-            NewRecentSearchesRepo refactoredRecentSearchesRepo) {
+    public FeatureProxyFactoryBean recentSearchesRepo() {
         FeatureProxyFactoryBean featureProxy = new FeatureProxyFactoryBean();
         featureProxy.setFeature("TWITTER_RECENT_SEARCHES");
-        featureProxy.setInactive(inMemoryRecentSearchesRepo);
-        featureProxy.setActive(refactoredRecentSearchesRepo);
+        featureProxy.setInactive(new InMemoryRecentSearchesRepo());
+        featureProxy.setActive(new NewRecentSearchesRepo());
 
         return featureProxy;
     }

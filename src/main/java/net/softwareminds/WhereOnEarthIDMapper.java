@@ -1,8 +1,11 @@
 package net.softwareminds;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class WhereOnEarthIDMapper {
 
     final private static Map<String,Long> woeIDMap = new HashMap<>();
