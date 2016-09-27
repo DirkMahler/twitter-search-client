@@ -20,7 +20,7 @@ public enum TwitterFeatureToggles implements Feature {
 
     @EnabledByDefault
     @DefaultActivationStrategy(id=UserRoleActivationStrategy.ID,
-            parameters = {@ActivationParameter(name = UserRoleActivationStrategy.PARAM_ROLES_NAME, value = "QA")})
+            parameters = {@ActivationParameter(name = UserRoleActivationStrategy.PARAM_ROLES_NAME, value = "ROLE_QA")})
     @Label("Twitter Profiles")
     @InfoLink("http://jira-profile-story")
     @Owner("Kai")
