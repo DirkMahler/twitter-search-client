@@ -21,15 +21,15 @@ public enum TwitterFeatureToggles implements Feature {
     @EnabledByDefault
     @DefaultActivationStrategy(id=UserRoleActivationStrategy.ID,
             parameters = {@ActivationParameter(name = UserRoleActivationStrategy.PARAM_ROLES_NAME, value = "QA")})
-    @Label("Twitter Recent Searches Improvement")
-    @InfoLink("http://jira-user-story")
-    @Owner("Kai")
-    RECENT_SEARCHES_IMPROVEMENT,
-
     @Label("Twitter Profiles")
     @InfoLink("http://jira-profile-story")
     @Owner("Kai")
-    TWITTER_PROFILE;
+    TWITTER_PROFILE,
+
+    @Label("Twitter Recent Searches Improvement")
+    @InfoLink("http://jira-user-story")
+    @Owner("Kai")
+    RECENT_SEARCHES_IMPROVEMENT;
 
     public boolean isActive() {
         return FeatureContext.getFeatureManager().isActive(this);
