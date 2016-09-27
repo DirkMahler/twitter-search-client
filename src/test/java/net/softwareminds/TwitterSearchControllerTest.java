@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.social.twitter.api.SearchResults;
+import org.springframework.social.twitter.api.Trend;
+import org.springframework.social.twitter.api.Trends;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,6 +21,7 @@ import org.togglz.junit.TogglzRule;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static java.util.Collections.emptyList;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
@@ -50,6 +53,7 @@ public class TwitterSearchControllerTest {
 
     @Rule
     public TogglzRule togglzRule = TogglzRule.allEnabled(TwitterFeatureToggles.class);
+
 
     @Test
     public void testSearch() throws Exception {
@@ -97,6 +101,26 @@ public class TwitterSearchControllerTest {
                    .andExpect(status().isOk())
                    .andExpect(view().name("trend"))
                    .andExpect(model().attribute("searchResults", nullValue()));
+        //@formatter:on
+    }
+
+    @Test
+    public void testTrend() throws Exception {
+        when(woeIDMap.getWhereOnEarthID("Hamburg")).thenReturn(4711L);
+
+        Trends trendsMock = mock(Trends.class);
+        Trend trend1 = mock(Trend.class);
+        Trend trend2 = mock(Trend.class);
+        List<Trend> trendsList = Arrays.asList(trend1, trend2);
+        when(trendsMock.getTrends()).thenReturn(trendsList);
+        when(twitter.searchOperations().getLocalTrends(4711L)).thenReturn(trendsMock);
+
+
+        //@formatter:off
+        mockMvc.perform(get("/trend").param("city", "Hamburg"))
+                   .andExpect(status().isOk())
+                   .andExpect(view().name("trend"))
+                   .andExpect(model().attribute("searchResults", contains(trend1, trend2)));
         //@formatter:on
     }
 
