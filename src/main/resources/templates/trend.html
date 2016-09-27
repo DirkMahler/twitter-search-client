@@ -46,9 +46,7 @@
             <ul class="list-group">
                 <li class="list-group-item" th:each="searchResult:${searchResults}">
                     <div class="row">
-                        <div class="col-xs-3" th:text="${searchResult.name}">
-                        </div>
-                        <div class="col-xs-5" th:text="${searchResult.query}">
+                        <div class="col-xs-5" th:text="${searchResult.name}">
                         </div>
                     </div>
                 </li>
