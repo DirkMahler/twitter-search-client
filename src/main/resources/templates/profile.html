@@ -39,13 +39,16 @@
             <ul th:if="${twitterProfile}!=null" class="list-group">
                 <h1>The Twitter Profile of <span th:text="${twitterProfile.screenName}"></span></h1>
                     <div class="row">
-                        <div class="col-xs-3">Description: <span th:text="${twitterProfile.description}"></span></div>
+                        <div class="col-xs-2">Description:</div>
+                        <div class="col-xs-8" th:text="${twitterProfile.description}"></div>
                     </div>
                      <div class="row">
-                         <div class="col-xs-3">Location:
-                             <span th:text="${twitterProfile.location}"></span></div>
-                         <div class="col-xs-3">Number of followers:
-                            <span th:text="${twitterProfile.followersCount}"></span></div>
+                         <div class="col-xs-2">Location:</div>
+                         <div class="col-xs-8" th:text="${twitterProfile.location}"></div>
+                     </div>
+                     <div class="row">
+                         <div class="col-xs-2">Number of followers:</div>
+                         <div class="col-xs-8" th:text="${twitterProfile.followersCount}"></div>
                     </div>
             </ul>
             <script type="text/javascript" src="./webjars/jquery/3.1.0/jquery.min.js"></script>
