@@ -18,5 +18,5 @@ public class WhereOnEarthIDMapper {
 
     public Long getWhereOnEarthID(String city){
         return woeIDMap.get(city.toLowerCase());
-    };
+    }
 }
