@@ -15,6 +15,7 @@ import org.springframework.social.twitter.api.Trend;
 import org.springframework.social.twitter.api.Trends;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
+import org.springframework.social.twitter.api.TwitterProfile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.togglz.junit.TogglzRule;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -109,9 +111,9 @@ public class TwitterSearchControllerTest {
         when(woeIDMap.getWhereOnEarthID("Hamburg")).thenReturn(4711L);
 
         Trends trendsMock = mock(Trends.class);
-        Trend trend1 = mock(Trend.class);
-        Trend trend2 = mock(Trend.class);
-        List<Trend> trendsList = Arrays.asList(trend1, trend2);
+        Trend firstTrend = mock(Trend.class);
+        Trend secondTrend = mock(Trend.class);
+        List<Trend> trendsList = Arrays.asList(firstTrend, secondTrend);
         when(trendsMock.getTrends()).thenReturn(trendsList);
         when(twitter.searchOperations().getLocalTrends(4711L)).thenReturn(trendsMock);
 
@@ -120,7 +122,7 @@ public class TwitterSearchControllerTest {
         mockMvc.perform(get("/trend").param("city", "Hamburg"))
                    .andExpect(status().isOk())
                    .andExpect(view().name("trend"))
-                   .andExpect(model().attribute("searchResults", contains(trend1, trend2)));
+                   .andExpect(model().attribute("searchResults", contains(firstTrend, secondTrend)));
         //@formatter:on
     }
 
@@ -141,6 +143,19 @@ public class TwitterSearchControllerTest {
                    .andExpect(status().isOk())
                    .andExpect(view().name("profile"))
                    .andExpect(model().attribute("twitterProfile", nullValue()));
+        //@formatter:on
+    }
+
+    @Test
+    public void testProfile() throws Exception {
+        TwitterProfile twitterProfile = mock(TwitterProfile.class);
+        when(twitter.userOperations().getUserProfile("Peter Lustig")).thenReturn(twitterProfile);
+
+        //@formatter:off
+        mockMvc.perform(get("/profile").param("userScreenName", "Peter Lustig"))
+                   .andExpect(status().isOk())
+                   .andExpect(view().name("profile"))
+                   .andExpect(model().attribute("twitterProfile", is(twitterProfile)));
         //@formatter:on
     }
 
