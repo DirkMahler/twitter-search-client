@@ -60,12 +60,12 @@ public class TwitterSearchControllerTest {
     @Test
     public void testSearch() throws Exception {
         when(recentSearchesRepo.getRecentSearchesByUser("user")).thenReturn(emptyList());
-        SearchResults searchResultsMock = mock(SearchResults.class);
+        SearchResults searchResults = mock(SearchResults.class);
 
         Tweet firstTweet = mock(Tweet.class);
         Tweet secondTweet = mock(Tweet.class);
-        when(searchResultsMock.getTweets()).thenReturn(Arrays.asList(firstTweet, secondTweet));
-        when(twitter.searchOperations().search("latest news")).thenReturn(searchResultsMock);
+        when(searchResults.getTweets()).thenReturn(Arrays.asList(firstTweet, secondTweet));
+        when(twitter.searchOperations().search("latest news")).thenReturn(searchResults);
 
         Collection<String> recentSearches = Arrays.asList("latest news", "majug");
         when(recentSearchesRepo.getRecentSearchesByUser("user")).thenReturn(recentSearches);
@@ -110,12 +110,12 @@ public class TwitterSearchControllerTest {
     public void testTrend() throws Exception {
         when(woeIDMap.getWhereOnEarthID("Hamburg")).thenReturn(4711L);
 
-        Trends trendsMock = mock(Trends.class);
+        Trends trends = mock(Trends.class);
         Trend firstTrend = mock(Trend.class);
         Trend secondTrend = mock(Trend.class);
         List<Trend> trendsList = Arrays.asList(firstTrend, secondTrend);
-        when(trendsMock.getTrends()).thenReturn(trendsList);
-        when(twitter.searchOperations().getLocalTrends(4711L)).thenReturn(trendsMock);
+        when(trends.getTrends()).thenReturn(trendsList);
+        when(twitter.searchOperations().getLocalTrends(4711L)).thenReturn(trends);
 
 
         //@formatter:off
