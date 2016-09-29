@@ -25,7 +25,7 @@ public class TwitterConfig extends SocialConfigurerAdapter {
 
     @Bean
     public UserProvider getUserProvider() {
-        return new SpringSecurityUserProvider("ROLE_ADMIN");
+        return new SpringSecurityUserProvider("ROLE_DEV");
     }
 
     @Bean
