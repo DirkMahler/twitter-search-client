@@ -9,7 +9,7 @@ import java.util.Map;
 public class InMemoryRecentSearchesRepo implements RecentSearchesRepo {
 
     private final int maxSearchesPerUser;
-    private final Map<String, EvictingQueue> recentSearchMap;
+    private final Map<String, EvictingQueue<String>> recentSearchMap;
 
     public InMemoryRecentSearchesRepo(){
         this(5);
@@ -17,12 +17,12 @@ public class InMemoryRecentSearchesRepo implements RecentSearchesRepo {
 
     public InMemoryRecentSearchesRepo(int maxSearchesPerUser) {
         this.maxSearchesPerUser = maxSearchesPerUser;
-        recentSearchMap = new HashMap();
+        recentSearchMap = new HashMap<>();
     }
 
     @Override
     public void addRecentSearch(String userName, String searchQuery) {
-        EvictingQueue userRecentSearches = recentSearchMap.get(userName);
+        EvictingQueue<String> userRecentSearches = recentSearchMap.get(userName);
         if(userRecentSearches==null){
             userRecentSearches = EvictingQueue.create(maxSearchesPerUser);
             recentSearchMap.put(userName, userRecentSearches);
